@@ -1,14 +1,19 @@
 import ReactSlider from "react-slider";
+import {useClimate} from "../../context/ClimateContext"
 import "./Hygrometer.css";
+  // import { useClimate } from "../../context/ClimateContext";
 
 function Hygrometer() {
+
+  const {Humidity, setHumidity} = useClimate()
+  console.log(ReactSlider.onAfterChange)
   return (
     <section>
       <h2>Hygrometer</h2>
-      <div className="actual-humid">Actual Humidity: {"y"}%</div>
+      <div className="actual-humid">Actual Humidity: {Humidity}%</div>
       <ReactSlider
-        value={10}
-        onAfterChange={(val) => {}}
+        value={Humidity}
+        onAfterChange={(val) => setHumidity(val)}
         className="hygrometer-slider"
         thumbClassName="hygrometer-thumb"
         trackClassName="hygrometer-track"
